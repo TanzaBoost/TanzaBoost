@@ -73,13 +73,13 @@ Keine weiteren Kosten!
 
 ### Kiswahili:
 ```
-🎉 Tovuti kwa 50,000 TSh tu
+🎉 Tovuti kwa 60,000 TSh tu
 ✅ Malipo ya mara moja • Maisha yote • Hakuna malipo mengine
 ```
 
 Oder kürzer:
 ```
-50,000 TSh • Mara moja tu • Maisha yote
+60,000 TSh • Mara moja tu • Maisha yote
 Hakuna malipo mengine!
 ```
 
@@ -146,7 +146,7 @@ Hakuna malipo mengine!
   <h1>Tovuti yako ndani ya saa 24h!</h1>
   
   <div class="price-banner">
-    <span class="price-amount">50,000 TSh</span>
+    <span class="price-amount">60,000 TSh</span>
     <span class="price-features">Mara moja tu • Maisha yote • Hakuna malipo mengine</span>
   </div>
   
@@ -159,7 +159,7 @@ Hakuna malipo mengine!
 ```html
 <h1>
   Tovuti yako ndani ya saa 24h!
-  <span class="price-highlight">50,000 TSh • Mara moja tu • Maisha yote</span>
+  <span class="price-highlight">60,000 TSh • Mara moja tu • Maisha yote</span>
 </h1>
 ```
 
