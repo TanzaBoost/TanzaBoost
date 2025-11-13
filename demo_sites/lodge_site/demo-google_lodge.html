@@ -1,0 +1,1325 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your_Lodge – Demo Microsite</title>
+    <style>
+      :root {
+        font-family: "Inter", Arial, sans-serif;
+        color-scheme: dark;
+        --bg: #051a30;
+        --bg-alt: rgba(9, 32, 54, 0.85);
+        --bg-card: rgba(12, 42, 72, 0.9);
+        --primary: #327dff;
+        --accent: #ff2d86;
+        --muted: #93a4c4;
+        --text: #d9e6ff;
+        --highlight: rgba(50, 125, 255, 0.16);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: radial-gradient(circle at top, rgba(50, 125, 255, 0.12), transparent 55%),
+          #051a30;
+        min-height: 100vh;
+        color: var(--text);
+      }
+      .page {
+        max-width: 940px;
+        margin: 0 auto;
+        padding: 2.5rem 1.5rem 3.5rem;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      header .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--muted);
+        text-decoration: none;
+      }
+      header nav {
+        display: flex;
+        gap: 1rem;
+      }
+      header nav a {
+        text-decoration: none;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 0.95rem;
+        position: relative;
+        padding-bottom: 0.15rem;
+      }
+      header nav a:hover {
+        color: var(--text);
+      }
+      header nav a.active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -0.35rem;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), var(--primary));
+        border-radius: 999px;
+      }
+      .hero {
+        display: grid;
+        gap: 1.5rem;
+        padding: 1.8rem;
+        border-radius: 1.2rem;
+        background: linear-gradient(155deg, rgba(12, 41, 70, 0.8), rgba(6, 20, 38, 0.92));
+        box-shadow: 0 25px 60px -35px rgba(0, 0, 0, 0.8);
+      }
+      .view-section[hidden] {
+        display: none;
+      }
+      .hero-top {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .hero-info {
+        flex: 1 1 320px;
+        display: grid;
+        gap: 1.4rem;
+      }
+      .hero-info h1 {
+        margin: 0;
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
+        font-weight: 700;
+      }
+      .hero-info p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+      .hero-meta {
+        display: grid;
+        gap: 0.35rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .hero-meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .hero-meta span strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .home-gallery {
+        width: 100%;
+        display: grid;
+        gap: 1.1rem;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      }
+      .home-gallery figure {
+        margin: 0;
+        display: grid;
+        gap: 0.75rem;
+        padding: 0.9rem 0.9rem 1.2rem;
+        border-radius: 1rem;
+        background: linear-gradient(160deg, rgba(15, 49, 82, 0.78), rgba(9, 29, 53, 0.94));
+        border: 1px solid rgba(50, 125, 255, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(50, 125, 255, 0.05);
+      }
+      .home-gallery img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 0.85rem;
+      }
+      .home-gallery figcaption {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+      .home-dining {
+        margin-top: 1.8rem;
+        padding: 1.6rem 1.8rem;
+        border-radius: 1.2rem;
+        background: linear-gradient(155deg, rgba(12, 41, 70, 0.85), rgba(6, 20, 38, 0.92));
+        box-shadow: 0 20px 50px -35px rgba(0, 0, 0, 0.7);
+        display: grid;
+        gap: 1.2rem;
+      }
+      .home-dining h2 {
+        margin: 0;
+        font-size: 1.3rem;
+        color: #fff;
+      }
+      .home-dining p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .home-dining-grid {
+        display: grid;
+        gap: 1.2rem;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+      .home-dining-grid figure {
+        margin: 0;
+        background: linear-gradient(160deg, rgba(15, 49, 82, 0.78), rgba(9, 29, 53, 0.94));
+        border-radius: 1rem;
+        padding: 1rem 1rem 1.2rem;
+        border: 1px solid rgba(50, 125, 255, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(50, 125, 255, 0.05);
+        display: grid;
+        gap: 0.8rem;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      }
+      .home-dining-grid img {
+        width: 100%;
+        height: 170px;
+        object-fit: cover;
+        border-radius: 0.9rem;
+        transition: transform 0.4s ease;
+      }
+      .home-dining-grid figcaption {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+      .home-dining-grid figure:hover {
+        transform: translateY(-8px);
+        border-color: rgba(255, 221, 143, 0.4);
+        box-shadow: 0 24px 38px -28px rgba(20, 48, 90, 0.55);
+      }
+      .home-dining-grid figure:hover img {
+        transform: scale(1.05);
+      }
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1.8rem;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+      }
+      .btn:hover {
+        transform: translateY(-4px);
+        filter: brightness(1.05);
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        box-shadow: 0 14px 24px -12px rgba(255, 45, 134, 0.65);
+      }
+      .btn-secondary {
+        background: #25d366;
+        color: #03381d;
+        box-shadow: 0 18px 26px -15px rgba(37, 211, 102, 0.6);
+      }
+      .hero-photo {
+        flex: 1 1 260px;
+        border-radius: 1rem;
+        background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(50, 125, 255, 0.1));
+        border: 1px solid rgba(147, 164, 196, 0.25);
+        min-height: 220px;
+        position: relative;
+        overflow: hidden;
+        transition: box-shadow 0.4s ease;
+      }
+      .hero-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s ease;
+      }
+      .hero-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 10%, rgba(5, 26, 48, 0.5) 100%);
+      }
+      .hero-photo:hover {
+        box-shadow: 0 28px 40px -36px rgba(50, 125, 255, 0.6);
+      }
+      .hero-photo:hover img {
+        transform: scale(1.05);
+      }
+      .section {
+        margin-top: 1.8rem;
+        padding: 1.6rem 1.8rem;
+        border-radius: 1.2rem;
+        background: var(--bg-card);
+        box-shadow: 0 20px 50px -35px rgba(0, 0, 0, 0.7);
+      }
+      .section h2 {
+        margin-top: 0;
+        margin-bottom: 0.9rem;
+        font-size: 1.25rem;
+        color: #fff;
+      }
+      .section p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .gallery-grid {
+        margin-top: 1.6rem;
+        display: grid;
+        gap: 1.3rem;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+      .gallery-card {
+        display: grid;
+        gap: 0.8rem;
+        padding: 1.1rem 1.1rem 1.4rem;
+        border-radius: 1rem;
+        background: linear-gradient(160deg, rgba(15, 49, 82, 0.78), rgba(9, 29, 53, 0.94));
+        border: 1px solid rgba(50, 125, 255, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(50, 125, 255, 0.04);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      }
+      .gallery-card img {
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+        border-radius: 0.9rem;
+      }
+      .gallery-card h3 {
+        margin: 0;
+        font-size: 1.05rem;
+        color: #fff;
+        letter-spacing: 0.05em;
+      }
+      .gallery-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+      .gallery-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(255, 221, 143, 0.45);
+        box-shadow: 0 24px 38px -28px rgba(20, 48, 90, 0.55);
+      }
+      .location-layout {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        align-items: start;
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+      .location-map {
+        justify-self: center;
+        margin: 0;
+        border-radius: 1rem;
+        overflow: hidden;
+        border: 1px solid rgba(50, 125, 255, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(50, 125, 255, 0.04);
+        width: 100%;
+        max-width: 440px;
+        aspect-ratio: 4 / 5;
+      }
+      .location-map img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .location-info {
+        display: grid;
+        gap: 1.1rem;
+        width: 100%;
+        max-width: 480px;
+      }
+      .location-info {
+        display: grid;
+        gap: 1.1rem;
+        width: 100%;
+        max-width: 500px;
+      }
+      .location-info h2 {
+        margin: 0;
+        font-size: 1.3rem;
+        color: #fff;
+      }
+      .location-info p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .location-meta {
+        display: grid;
+        gap: 0.9rem;
+      }
+      .location-meta div h3 {
+        margin: 0 0 0.3rem;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .location-meta div p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .location-cta,
+      .contact-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 0.8rem;
+      }
+      .btn-whatsapp {
+        background: #25d366;
+        color: #03381d;
+        box-shadow: 0 18px 26px -15px rgba(37, 211, 102, 0.6);
+      }
+      .btn-whatsapp:hover {
+        transform: translateY(-2px);
+      }
+      .contact-layout {
+        display: grid;
+        gap: 1.6rem;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        align-items: center;
+      }
+      .contact-card {
+        display: grid;
+        gap: 1rem;
+        background: linear-gradient(160deg, rgba(15, 49, 82, 0.78), rgba(9, 29, 53, 0.94));
+        border-radius: 1rem;
+        padding: 1.4rem;
+        border: 1px solid rgba(50, 125, 255, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(50, 125, 255, 0.04);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      }
+      .contact-card h2 {
+        margin: 0;
+        font-size: 1.3rem;
+        color: #fff;
+      }
+      .contact-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .contact-card .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        background: rgba(50, 125, 255, 0.15);
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 600;
+        width: fit-content;
+      }
+      .contact-card-primary {
+        min-height: 100%;
+      }
+      .contact-card-secondary {
+        min-height: 100%;
+      }
+      .contact-meta {
+        display: grid;
+        gap: 0.9rem;
+      }
+      .contact-meta div h3 {
+        margin: 0 0 0.3rem;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .contact-meta div p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .menu-cards {
+        margin-top: 1.5rem;
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+      .menu-card {
+        background: linear-gradient(160deg, rgba(15, 49, 82, 0.78), rgba(9, 29, 53, 0.94));
+        border-radius: 1rem;
+        padding: 1.1rem 1.1rem 1.4rem;
+        border: 1px solid rgba(50, 125, 255, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(50, 125, 255, 0.04);
+        display: grid;
+        gap: 0.85rem;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      }
+      .menu-card img {
+        width: 100%;
+        border-radius: 0.9rem;
+        height: 190px;
+        object-fit: cover;
+      }
+      .menu-card h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: #fff;
+        letter-spacing: 0.05em;
+      }
+      .menu-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      .contact-highlights {
+        margin-top: 1rem;
+        display: grid;
+        gap: 0.8rem;
+        padding-top: 0.6rem;
+        border-top: 1px solid rgba(50, 125, 255, 0.12);
+      }
+      .contact-highlight {
+        display: grid;
+        gap: 0.2rem;
+      }
+      .contact-highlight strong {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.95rem;
+      }
+      .contact-highlight span {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .location-extras {
+        grid-column: 1 / -1;
+        margin-top: 1.4rem;
+        display: grid;
+        gap: 1.2rem;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        width: 100%;
+        max-width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .location-card {
+        display: grid;
+        gap: 0.6rem;
+        padding: 1.4rem 1.6rem;
+        border-radius: 1rem;
+        background: rgba(15, 49, 82, 0.72);
+        border: 1px solid rgba(50, 125, 255, 0.12);
+        box-shadow: inset 0 0 0 1px rgba(50, 125, 255, 0.05);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      }
+      .location-card h3 {
+        margin: 0;
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .location-card ul {
+        margin: 0;
+        padding-left: 1.1rem;
+        display: grid;
+        gap: 0.6rem;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      .location-card ul li::marker {
+        color: rgba(255, 221, 143, 0.9);
+      }
+      .location-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.96rem;
+        line-height: 1.6;
+      }
+      .menu-card:hover,
+      .location-card:hover,
+      .contact-card:hover,
+      .review:hover {
+        transform: translateY(-8px);
+        border-color: rgba(255, 221, 143, 0.4);
+        box-shadow: 0 26px 40px -30px rgba(20, 48, 90, 0.55);
+      }
+      .contact-timeline {
+        display: grid;
+        gap: 0.9rem;
+        margin-top: 1rem;
+      }
+      .contact-step {
+        display: grid;
+        gap: 0.35rem;
+        background: rgba(15, 49, 82, 0.72);
+        border: 1px solid rgba(50, 125, 255, 0.1);
+        border-radius: 0.9rem;
+        padding: 0.9rem 1rem;
+      }
+      .contact-step strong {
+        color: rgba(255, 255, 255, 0.85);
+        letter-spacing: 0.05em;
+        font-size: 0.92rem;
+        text-transform: uppercase;
+      }
+      .contact-step p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+      .price-table {
+        margin-top: 1.6rem;
+        border-radius: 1rem;
+        overflow: hidden;
+        border: 1px solid rgba(50, 125, 255, 0.12);
+        box-shadow: inset 0 0 0 1px rgba(50, 125, 255, 0.05);
+      }
+      .price-table .price-header,
+      .price-table .price-row {
+        display: grid;
+        grid-template-columns: 1.4fr 0.8fr 1.8fr;
+        gap: 1rem;
+        padding: 1rem 1.2rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      }
+      .price-table .price-header {
+        background: rgba(15, 49, 82, 0.85);
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .price-table .price-row:nth-child(even) {
+        background: rgba(9, 29, 53, 0.6);
+      }
+      .price-table .price-row:nth-child(odd) {
+        background: rgba(12, 42, 72, 0.6);
+      }
+      .price-table .price-row span {
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .price-table .price-row span:nth-child(2) {
+        font-weight: 700;
+        color: #ffdd8f;
+      }
+      .price-table .price-row:hover {
+        background: rgba(20, 52, 86, 0.72);
+        box-shadow: inset 0 0 0 1px rgba(255, 221, 143, 0.25);
+      }
+      .price-note {
+        margin-top: 1.1rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .booking-demo {
+        margin-top: 1.6rem;
+        display: grid;
+        gap: 1.2rem;
+        padding: 1.5rem 1.8rem;
+        border-radius: 1.1rem;
+        background: linear-gradient(150deg, rgba(15, 49, 82, 0.82), rgba(9, 29, 53, 0.94));
+        border: 1px solid rgba(50, 125, 255, 0.12);
+        box-shadow: inset 0 0 0 1px rgba(50, 125, 255, 0.05);
+      }
+      .booking-demo h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: #fff;
+      }
+      .booking-demo p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .booking-form {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+      .booking-form label {
+        display: grid;
+        gap: 0.4rem;
+        font-size: 0.92rem;
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .booking-form input,
+      .booking-form select {
+        background: rgba(6, 20, 38, 0.9);
+        border: 1px solid rgba(50, 125, 255, 0.18);
+        border-radius: 0.6rem;
+        padding: 0.65rem 0.8rem;
+        color: var(--text);
+        font-size: 0.95rem;
+      }
+      .booking-form input:focus,
+      .booking-form select:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px rgba(255, 45, 134, 0.25);
+      }
+      .booking-actions {
+        display: flex;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+      }
+      .btn-outline {
+        border: 1px solid rgba(50, 125, 255, 0.5);
+        background: transparent;
+        color: var(--text);
+      }
+      .btn-outline:hover {
+        background: rgba(50, 125, 255, 0.12);
+      }
+      .booking-disclaimer {
+        margin: 0;
+        color: rgba(255, 220, 143, 0.85);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      .tagline {
+        display: inline-flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .tagline span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+      .tagline span::before {
+        content: "•";
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .gallery-grid {
+        margin-top: 1.6rem;
+        display: grid;
+        gap: 1.3rem;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+      .gallery-card {
+        display: grid;
+        gap: 0.8rem;
+        padding: 1.1rem 1.1rem 1.4rem;
+        border-radius: 1rem;
+        background: linear-gradient(160deg, rgba(15, 49, 82, 0.78), rgba(9, 29, 53, 0.94));
+        border: 1px solid rgba(50, 125, 255, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(50, 125, 255, 0.04);
+      }
+      .gallery-card img {
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+        border-radius: 0.9rem;
+      }
+      .gallery-card h3 {
+        margin: 0;
+        font-size: 1.05rem;
+        color: #fff;
+        letter-spacing: 0.05em;
+      }
+      .gallery-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+      .menu-cards {
+        margin-top: 1.5rem;
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+      .menu-card {
+        background: linear-gradient(160deg, rgba(15, 49, 82, 0.78), rgba(9, 29, 53, 0.94));
+        border-radius: 1rem;
+        padding: 1.1rem 1.1rem 1.4rem;
+        border: 1px solid rgba(50, 125, 255, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(50, 125, 255, 0.04);
+        display: grid;
+        gap: 0.85rem;
+      }
+      .menu-card img {
+        width: 100%;
+        border-radius: 0.9rem;
+        height: 190px;
+        object-fit: cover;
+      }
+      .menu-card h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: #fff;
+        letter-spacing: 0.05em;
+      }
+      .menu-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      .reviews {
+        display: grid;
+        gap: 1rem;
+      }
+      .reviews-title {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .review {
+        background: linear-gradient(150deg, rgba(21, 52, 82, 0.65), rgba(9, 35, 62, 0.95));
+        border-radius: 1rem;
+        padding: 1.4rem;
+        border: 1px solid rgba(50, 125, 255, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(50, 125, 255, 0.05);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      }
+      .review .stars {
+        color: #ffc947;
+        letter-spacing: 0.25rem;
+        font-size: 1rem;
+      }
+      .review p {
+        margin: 0.75rem 0 0.5rem;
+        color: var(--text);
+        font-weight: 600;
+      }
+      .review span {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .cta-banner {
+        display: grid;
+        gap: 1rem;
+        align-items: center;
+        justify-items: start;
+        text-align: left;
+      }
+      .cta-banner strong {
+        font-size: 1.2rem;
+        color: #fff;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        margin-top: 2.5rem;
+        font-size: 0.85rem;
+      }
+      footer a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      @media (max-width: 720px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        header nav {
+          flex-wrap: wrap;
+        }
+        .hero {
+          padding: 1.5rem;
+        }
+        .hero-buttons {
+          flex-direction: column;
+          width: 100%;
+        }
+        .btn {
+          width: 100%;
+        }
+        .section {
+          padding: 1.4rem 1.5rem;
+        }
+        .home-dining {
+          padding: 1.4rem 1.5rem;
+        }
+        .price-table .price-header,
+        .price-table .price-row {
+          grid-template-columns: 1fr;
+          gap: 0.4rem;
+        }
+        .price-table .price-row span:nth-child(2) {
+          font-size: 1.05rem;
+        }
+        .booking-demo {
+          padding: 1.3rem 1.4rem;
+        }
+        .booking-actions {
+          flex-direction: column;
+        }
+        .booking-actions .btn {
+          width: 100%;
+        }
+        .location-extras {
+          grid-template-columns: 1fr;
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <a class="brand" href="#home" data-section="home">your_logo</a>
+        <nav>
+          <a href="#home" data-section="home">Home</a>
+          <a href="#menu" data-section="menu">Prices</a>
+          <a href="#gallery" data-section="gallery">Gallery</a>
+          <a href="#location" data-section="location">Location</a>
+          <a href="#contact" data-section="contact">Contact</a>
+        </nav>
+      </header>
+
+      <section class="hero view-section" id="home" data-section="home">
+        <div class="hero-top">
+          <div class="hero-info">
+            <h1>Your_Lodge</h1>
+            <p>
+              Sunrise views, boutique suites, and curated safari experiences made easy. Settle into a
+              tranquil retreat where every detail—from breakfast baskets to sunset drives—is arranged
+              for you.
+            </p>
+            <div class="hero-meta">
+              <span><strong>Arusha</strong> · Ngorongoro Foothills</span>
+              <span>☎ 255 712 345 678 · WhatsApp concierge</span>
+              <span>Private villas · organic dining · safari planning included</span>
+            </div>
+            <div class="hero-buttons">
+              <a class="btn btn-primary" href="https://wa.me/255712345678" target="_blank" rel="noopener">Reserve your room</a>
+              <a class="btn btn-secondary" href="https://wa.me/255712345678" target="_blank" rel="noopener">WhatsApp concierge</a>
+            </div>
+          </div>
+          <div class="hero-photo">
+            <img src="https://raw.githubusercontent.com/telge1/website_marketing/main/website/demo_sites/lodge_site/room.png" alt="Scenic view of Your_Lodge master suite with panoramic windows" />
+          </div>
+        </div>
+        <div class="tagline">
+          <span>Sunrise bush breakfasts</span>
+          <span>Infinity pool with savannah views</span>
+          <span>Tailored safari itineraries</span>
+          <span>Airport transfer included</span>
+        </div>
+        <div class="home-gallery">
+          <figure>
+            <img src="https://raw.githubusercontent.com/telge1/website_marketing/main/website/demo_sites/lodge_site/rezeption.png" alt="Lodge reception area with warm lighting and concierge desk" />
+            <figcaption>
+              Concierge hosts greet you with chilled towels, trip briefings, and a seamless check-in.
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="https://raw.githubusercontent.com/telge1/website_marketing/main/website/demo_sites/lodge_site/dinning_room.png" alt="Elegant dining room set for a tasting menu" />
+            <figcaption>
+              Candlelit dinners showcase regional flavours, curated wine pairings, and seasonal menus.
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="https://raw.githubusercontent.com/telge1/website_marketing/main/website/demo_sites/lodge_site/room.png" alt="Twilight view of the private suite terrace" />
+            <figcaption>
+              Suites open onto private terraces for sunrise coffee and sunset relaxation.
+            </figcaption>
+          </figure>
+        </div>
+        <div class="home-dining">
+          <h2>Dining at Your_Lodge</h2>
+          <p>
+            From sunrise harvest bowls to multi-course tasting menus, our kitchen team celebrates
+            Tanzania’s farms, fisheries, and spice markets. Every plate is designed to complement
+            your safari day.
+          </p>
+          <div class="home-dining-grid">
+            <figure>
+              <img src="https://raw.githubusercontent.com/telge1/website_marketing/main/website/demo_sites/lodge_site/food_1.png" alt="Chef presenting a seasonal tasting menu plate" />
+              <figcaption>
+                Seasonal tasting menus pair freshly harvested produce with handcrafted sauces.
+              </figcaption>
+            </figure>
+            <figure>
+              <img src="https://raw.githubusercontent.com/telge1/website_marketing/main/website/demo_sites/lodge_site/food_2.png" alt="Gourmet picnic hamper arranged for lodge guests" />
+              <figcaption>
+                Picnic hampers keep crater and waterfall excursions flavourful and refined.
+              </figcaption>
+            </figure>
+            <figure>
+              <img src="https://raw.githubusercontent.com/telge1/website_marketing/main/website/demo_sites/lodge_site/food_3.png" alt="Dessert board with artisanal sweets served at the lodge" />
+              <figcaption>
+                Dessert boards and sundowner cocktails wrap up evenings by the infinity pool.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="section reviews home-reviews">
+          <h2 class="reviews-title">Customer reviews</h2>
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>
+              Dream getaway—our suite overlooked the plains and the team arranged every safari
+              flawlessly.
+            </p>
+            <span>— Lena & Martin D.</span>
+          </div>
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>
+              From private transfers to stargazing dinners, everything felt personal and luxurious.
+            </p>
+            <span>— Sophia G.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section view-section" id="menu" data-section="menu" hidden>
+        <h2>Price Overview</h2>
+        <p>
+          Every stay includes à la carte breakfast, concierge itinerary planning, and return airport
+          transfers. Choose the room or package that complements your travel style.
+        </p>
+        <div class="price-table">
+          <div class="price-header">
+            <span>Room Type</span>
+            <span>Nightly Rate</span>
+            <span>Included Highlights</span>
+          </div>
+          <div class="price-row">
+            <span>Serengeti Classic (Single)</span>
+            <span>$189</span>
+            <span>Queen bed, writing desk, veranda breakfast service</span>
+          </div>
+          <div class="price-row">
+            <span>Serengeti Classic (Double)</span>
+            <span>$229</span>
+            <span>King bed, walk-in shower, sunset turn-down, welcome cocktail</span>
+          </div>
+          <div class="price-row">
+            <span>Horizon Suite (Single)</span>
+            <span>$289</span>
+            <span>Private terrace, soaking tub, butler service on request</span>
+          </div>
+          <div class="price-row">
+            <span>Horizon Suite (Double)</span>
+            <span>$329</span>
+            <span>Panoramic lounge, in-room breakfast basket, spa voucher</span>
+          </div>
+          <div class="price-row">
+            <span>Family Villa (up to 4 guests)</span>
+            <span>$469</span>
+            <span>Two bedrooms, plunge pool, private host, dedicated safari vehicle</span>
+          </div>
+        </div>
+        <p class="price-note">
+          Need a bespoke package for honeymoon or group travel? Message us—our concierge will tailor a
+          personalised quote within the day.
+        </p>
+        <div class="booking-demo">
+          <h3>Online booking & M-Pesa checkout (optional add-on)</h3>
+          <p>
+            Upgrade your lodge website with a fully integrated reservation flow. Guests select their
+            travel dates, confirm availability, and complete payment via M-Pesa—directly on your site.
+            Perfect for instant confirmations and guests who prefer cashless stays.
+          </p>
+          <form class="booking-form">
+            <label>
+              Arrival date
+              <input type="date" name="arrival" />
+            </label>
+            <label>
+              Departure date
+              <input type="date" name="departure" />
+            </label>
+            <label>
+              Room type
+              <select name="room">
+                <option>Serengeti Classic</option>
+                <option>Horizon Suite</option>
+                <option>Family Villa</option>
+              </select>
+            </label>
+            <label>
+              Guests
+              <input type="number" name="guests" min="1" max="6" value="2" />
+            </label>
+          </form>
+          <div class="booking-actions">
+            <button type="button" class="btn btn-primary">Check availability</button>
+            <button type="button" class="btn btn-outline">Simulate M-Pesa checkout</button>
+          </div>
+          <p class="booking-disclaimer">
+            Demo only: Full online booking & M-Pesa payment require additional setup fees (API access,
+            secure server integration, transaction monitoring). Talk to us for a custom quote.
+          </p>
+        </div>
+      </section>
+
+      <section class="section view-section" id="gallery" data-section="gallery" hidden>
+        <h2>Gallery</h2>
+        <p>
+          Peek into the lodge—serene suites, curated excursions, and inviting spaces designed for
+          rest after unforgettable days outdoors.
+        </p>
+        <div class="gallery-grid">
+          <article class="gallery-card">
+            <img src="https://raw.githubusercontent.com/telge1/website_marketing/main/website/demo_sites/lodge_site/hall.png" alt="Guests enjoying a lodge lounge with lantern light" />
+            <h3>Lodge Lounge</h3>
+            <p>
+              Lantern-lit lounges give way to storytelling, fresh chai, and slow evenings.
+            </p>
+          </article>
+          <article class="gallery-card">
+            <img src="https://raw.githubusercontent.com/telge1/website_marketing/main/website/demo_sites/lodge_site/rezeption.png" alt="Outdoor garden area with lodge signage" />
+            <h3>Concierge Welcome</h3>
+            <p>
+              Our reception team greets you with chilled towels, itinerary briefs, and local treats.
+            </p>
+          </article>
+          <article class="gallery-card">
+            <img src="https://raw.githubusercontent.com/telge1/website_marketing/main/website/demo_sites/lodge_site/dinning_room.png" alt="Fine dining setup in the lodge restaurant" />
+            <h3>Signature Dining</h3>
+            <p>
+              Chef-led tasting menus highlight farmers, spices, and sustainable catches from the region.
+            </p>
+          </article>
+          <article class="gallery-card">
+            <img src="https://raw.githubusercontent.com/telge1/website_marketing/main/website/demo_sites/lodge_site/room.png" alt="Suite terrace with panoramic views" />
+            <h3>Suite Terrace</h3>
+            <p>
+              Suites open to private terraces with sweeping views across the crater rim.
+            </p>
+          </article>
+          <article class="gallery-card">
+            <img src="https://raw.githubusercontent.com/telge1/website_marketing/main/website/demo_sites/lodge_site/food_1.png" alt="Chef’s tasting menu with seasonal produce" />
+            <h3>Chef’s Tasting Menu</h3>
+            <p>
+              Seasonal courses with locally sourced ingredients and curated wine pairings.
+            </p>
+          </article>
+          <article class="gallery-card">
+            <img src="https://raw.githubusercontent.com/telge1/website_marketing/main/website/demo_sites/lodge_site/food_2.png" alt="Gourmet picnic hamper ready for safari guests" />
+            <h3>Safari Picnic Hamper</h3>
+            <p>
+              Packed baskets with artisan breads, cheeses, and fruit for crater excursions.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section view-section" id="location" data-section="location" hidden>
+        <div class="location-layout">
+          <figure class="location-map">
+            <img src="https://raw.githubusercontent.com/telge1/website_marketing/main/website/demo_sites/lodge_site/location.png" alt="Map and exterior view of Your_Lodge near Ngorongoro" />
+          </figure>
+          <div class="location-info">
+            <div>
+              <h2>Stay near Ngorongoro Crater</h2>
+              <p>
+                Your_Lodge rests on Rosewood Ridge—35 minutes from the crater gate and close to coffee
+                estates. Ideal for sunrise departures and leisurely returns to the pool.
+              </p>
+            </div>
+            <div class="location-meta">
+              <div>
+                <h3>Address</h3>
+                <p>
+                  Rosewood Ridge, Karatu<br />
+                  Arusha Region, Tanzania
+                </p>
+              </div>
+              <div>
+                <h3>Reception</h3>
+                <p>
+                  Daily · 7 am – 11 pm<br />
+                  Check-in 2 pm · Check-out 11 am
+                </p>
+              </div>
+              <div>
+                <h3>Reservations</h3>
+                <p>
+                  ☎ 255 712 345 678<br />
+                  WhatsApp &amp; email concierge
+                </p>
+              </div>
+            </div>
+            <div class="location-cta">
+              <a class="btn btn-primary" href="https://wa.me/255712345678" target="_blank" rel="noopener">Reserve your stay</a>
+              <a class="btn btn-secondary" href="https://maps.google.com/?q=Your_Lodge+Karatu" target="_blank" rel="noopener">Open in Google Maps</a>
+            </div>
+          </div>
+          <div class="location-extras">
+            <div class="location-card">
+              <h3>Travel times</h3>
+              <ul>
+                <li>Ngorongoro crater gate – 35 minutes</li>
+                <li>Lake Manyara airstrip – 40 minutes</li>
+                <li>Arusha (ARK) airport – 2 hours</li>
+                <li>Serengeti South gate – 2.5 hours</li>
+              </ul>
+            </div>
+            <div class="location-card">
+              <h3>Nearby highlights</h3>
+              <ul>
+                <li>Coffee estate tours with tasting & roasting workshop</li>
+                <li>Maasai cultural village experiences</li>
+                <li>Hot-air balloon safaris and sunrise bush breakfasts</li>
+                <li>Karatu craft market for art and textiles</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section view-section" id="contact" data-section="contact" hidden>
+        <div class="contact-layout">
+          <div class="contact-card contact-card-primary">
+            <span class="badge">Concierge team</span>
+            <h2>Plan your stay</h2>
+            <p>
+              Anniversary trip, honeymoon escape, or family safari? Message us with your travel dates
+              and we’ll tailor rooms, transfers, and curated experiences just for you.
+            </p>
+            <div class="contact-meta">
+              <div>
+                <h3>Direct contact</h3>
+                <p>
+                  ☎ 255 712 345 678<br />
+                  reservations@yourlodge.co.tz
+                </p>
+              </div>
+              <div>
+                <h3>Response times</h3>
+                <p>
+                  Daily · 8 am – 10 pm<br />
+                  Faster replies via WhatsApp
+                </p>
+              </div>
+            </div>
+            <div class="location-cta">
+              <a class="btn btn-whatsapp" href="https://wa.me/255712345678" target="_blank" rel="noopener">Chat with us on WhatsApp</a>
+            </div>
+            <div class="contact-highlights">
+              <div class="contact-highlight">
+                <strong>Multi-language support</strong>
+                <span>Deutsch · English · Kiswahili · Français</span>
+              </div>
+              <div class="contact-highlight">
+                <strong>Rapid responses</strong>
+                <span>WhatsApp replies within 30 minutes · Email replies within 2 hours</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-card contact-card-secondary">
+            <span class="badge">Itinerary design</span>
+            <h2>Request a custom itinerary</h2>
+            <p>
+              Let us know arrival airport, group size, and wish list—hot air balloons, safari drives,
+              village visits—and our concierge will craft a personalised itinerary.
+            </p>
+            <div class="contact-cta">
+              <a class="btn btn-whatsapp" href="https://wa.me/255712345678?text=Hi%20Your_Lodge%2C%20I'd%20love%20to%20plan%20a%20stay%20with%20custom%20activities." target="_blank" rel="noopener">Start planning on WhatsApp</a>
+            </div>
+            <p style="margin: 0; color: var(--muted); font-size: 0.9rem;">
+              Share dietary needs or celebration details—we confirm within the day with curated options.
+            </p>
+            <div class="contact-timeline">
+              <div class="contact-step">
+                <strong>1. Share details</strong>
+                <p>Tell us your travel dates, guest count, and dream experience features.</p>
+              </div>
+              <div class="contact-step">
+                <strong>2. Receive proposal</strong>
+                <p>We send a curated itinerary with room recommendations and activity highlights.</p>
+              </div>
+              <div class="contact-step">
+                <strong>3. Confirm & relax</strong>
+                <p>Approve the plan, and our concierge schedules transfers, guides, and dining.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Your_Lodge · by TanzaBoost · All rights reserved.
+        <br />
+        <a href="https://wa.me/255712345678" target="_blank" rel="noopener">Book your website demo →</a>
+      </footer>
+    </div>
+    <script>
+      const yearEl = document.getElementById("year");
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+
+      const sections = Array.from(document.querySelectorAll(".view-section"));
+      const navLinks = Array.from(document.querySelectorAll("header [data-section]"));
+      const sectionNames = new Set(sections.map((section) => section.dataset.section));
+
+      function showSection(name) {
+        const target = sectionNames.has(name) ? name : "home";
+        sections.forEach((section) => {
+          if (section.dataset.section === target) {
+            section.hidden = false;
+          } else {
+            section.hidden = true;
+          }
+        });
+        navLinks.forEach((link) => {
+          const isTarget = link.dataset.section === target;
+          if (!link.classList.contains("brand")) {
+            link.classList.toggle("active", isTarget);
+          }
+        });
+      }
+
+      const initialHash = window.location.hash.replace("#", "");
+      showSection(sectionNames.has(initialHash) ? initialHash : "home");
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          const targetSection = link.dataset.section;
+          showSection(targetSection);
+          window.history.replaceState(null, "", `#${targetSection}`);
+        });
+      });
+
+    </script>
+  </body>
+</html>
+
