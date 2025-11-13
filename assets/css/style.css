@@ -213,6 +213,66 @@ p { line-height: 1.6; margin: 0 0 12px; }
 }
 .hero .hero-copy h1 .subline { display: block; }
 .price-note { font-weight: 600; }
+
+/* ============ Price Highlight Box ============ */
+.price-highlight-box {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.15));
+  border: 2px solid var(--brand);
+  border-radius: 16px;
+  padding: 16px 24px;
+  margin: 20px 0;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+  animation: pulse-glow 3s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.price-highlight-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(59, 130, 246, 0.4);
+}
+
+.price-highlight-box .price-amount {
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 800;
+  color: #ffd700;
+  text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.price-highlight-box .price-features {
+  font-size: clamp(13px, 2vw, 16px);
+  color: var(--text);
+  font-weight: 600;
+  text-align: center;
+  opacity: 0.95;
+  line-height: 1.4;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+    border-color: var(--brand);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.5);
+    border-color: var(--brand-600);
+  }
+}
+
+@media (max-width: 768px) {
+  .price-highlight-box {
+    padding: 14px 20px;
+    margin: 16px 0;
+  }
+  
+  .price-highlight-box .price-features {
+    font-size: 13px;
+  }
+}
 .cta-row {
   display: flex;
   gap: 12px;
