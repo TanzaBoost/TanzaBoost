@@ -26,6 +26,7 @@ html, body {
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   color: var(--text);
   background: var(--bg);
+  font-size: 17px;
 }
 a {
   color: inherit;
@@ -40,47 +41,47 @@ a {
 .center { text-align: center; }
 .full { width: 100%; display: inline-block; }
 .hidden { display: none; }
-.tiny { font-size: 12px; }
+.tiny { font-size: 13px; }
 
 .container {
-  width: min(1680px, 96vw);
+  width: min(1920px, 98vw);
   margin: 0 auto;
 }
 
 h1 {
-  font-size: clamp(28px, 5vw, 44px);
-  line-height: 1.15;
-  margin: 0 0 12px;
+  font-size: clamp(34px, 5.2vw, 56px);
+  line-height: 1.12;
+  margin: 0 0 16px;
 }
 h2.section-title {
-  font-size: clamp(22px, 3.2vw, 32px);
-  margin: 0 0 20px;
+  font-size: clamp(28px, 3.4vw, 42px);
+  margin: 0 0 22px;
 }
 h3 {
-  font-size: 20px;
-  margin: 0 0 8px;
+  font-size: clamp(20px, 1.4vw, 24px);
+  margin: 0 0 10px;
 }
 .card h2 {
-  font-size: 20px;
-  margin: 0 0 8px;
+  font-size: clamp(20px, 1.4vw, 24px);
+  margin: 0 0 10px;
 }
-p { line-height: 1.6; margin: 0 0 12px; }
+p { line-height: 1.65; margin: 0 0 14px; }
 
 /* ============ Header ============ */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(2, 6, 23, 0.85);
+  background: rgba(2, 6, 23, 0.88);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
 .header-inner {
   display: flex;
   align-items: center;
-  gap: 28px;
-  padding: 18px 0;
-  min-height: 108px;
+  gap: 32px;
+  padding: 20px 0;
+  min-height: 128px;
 }
 .logo {
   font-weight: 800;
@@ -89,17 +90,17 @@ p { line-height: 1.6; margin: 0 0 12px; }
 }
 .logo span { color: var(--brand); }
 .logo img {
-  height: clamp(78px, 9.5vw, 128px);
+  height: clamp(96px, 11vw, 160px);
   width: auto;
   display: block;
 }
 .nav {
   display: flex;
   flex: 1;
-  gap: clamp(18px, 2vw, 36px);
+  gap: clamp(22px, 2.4vw, 42px);
   align-items: center;
   justify-content: center;
-  font-size: clamp(16px, 1.2vw, 19px);
+  font-size: clamp(17px, 1.35vw, 21px);
   font-weight: 600;
 }
 .nav a {
@@ -113,13 +114,13 @@ p { line-height: 1.6; margin: 0 0 12px; }
 }
 .nav a[aria-current="page"] { color: var(--brand); font-weight: 700; }
 .nav a.btn {
-  font-size: clamp(15px, 1.1vw, 17px);
-  padding: 12px 20px;
-  margin-left: 8px;
+  font-size: clamp(16px, 1.2vw, 18px);
+  padding: 14px 24px;
+  margin-left: 10px;
 }
 .nav-toggle {
   display: none;
-  font-size: 28px;
+  font-size: 30px;
   background: transparent;
   border: 0;
   cursor: pointer;
@@ -129,20 +130,20 @@ p { line-height: 1.6; margin: 0 0 12px; }
 }
 .lang-switch {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 0;
   flex-wrap: nowrap;
   flex-shrink: 0;
 }
 .site-header .lang-switch { margin-bottom: 0; }
 .site-header .chip {
-  padding: 10px 14px;
-  font-size: 15px;
+  padding: 12px 16px;
+  font-size: 16px;
 }
-.site-header .chip span { font-size: 15px; }
+.site-header .chip span { font-size: 16px; }
 .site-header .chip .flag-icon {
-  width: 22px;
-  height: 15px;
+  width: 24px;
+  height: 16px;
 }
 
 /* ============ Buttons ============ */
@@ -151,10 +152,11 @@ p { line-height: 1.6; margin: 0 0 12px; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 16px;
+  padding: 12px 20px;
   border-radius: 999px;
   border: 1px solid transparent;
   font-weight: 600;
+  font-size: 16px;
   transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 }
 .btn:hover {
@@ -247,37 +249,43 @@ p { line-height: 1.6; margin: 0 0 12px; }
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 56px 0 40px;
+  padding: 64px 0 48px;
+  text-align: center;
 }
 .hero-inner {
   position: relative;
   z-index: 1;
-  max-width: 980px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 .hero .hero-copy h1 .subline { display: block; }
 .hero-lead {
-  font-size: clamp(16px, 2.1vw, 18px);
-  max-width: 42rem;
+  font-size: clamp(18px, 2.2vw, 22px);
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
   color: #dbe4f3;
 }
 .hero-benefits {
-  font-size: 14px;
+  font-size: clamp(15px, 1.2vw, 18px);
   font-weight: 600;
   color: var(--brand);
   letter-spacing: 0.01em;
-  margin: 4px 0 8px;
+  margin: 8px auto 12px;
+  max-width: 52rem;
 }
 .hero-trust {
-  margin-top: 14px;
-  font-size: 14px;
-  max-width: 36rem;
+  margin: 16px auto 0;
+  font-size: clamp(15px, 1.1vw, 17px);
+  max-width: 42rem;
 }
 .price-note { font-weight: 600; }
 .cta-row {
   display: flex;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 14px;
+  margin-top: 20px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .cta-row.center-row {
   justify-content: center;
@@ -300,21 +308,25 @@ p { line-height: 1.6; margin: 0 0 12px; }
 }
 
 /* ============ Sections ============ */
-.section { padding: 48px 0; }
+.section { padding: 56px 0; }
 .section.alt { background: var(--bg-alt); }
 .section-intro {
-  margin: -8px auto 24px;
-  max-width: 40rem;
+  margin: -4px auto 28px;
+  max-width: 48rem;
+  font-size: clamp(16px, 1.2vw, 19px);
+  text-align: center;
 }
 .narrow {
-  max-width: 720px;
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 .narrow-block {
-  max-width: 44rem;
+  max-width: 52rem;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 .position-band {
   background:
@@ -324,10 +336,10 @@ p { line-height: 1.6; margin: 0 0 12px; }
   text-align: center;
 }
 .position-lead {
-  font-size: clamp(17px, 2.2vw, 20px);
+  font-size: clamp(19px, 2.3vw, 24px);
   font-weight: 600;
-  max-width: 38rem;
-  margin: 0 auto 12px;
+  max-width: 46rem;
+  margin: 0 auto 14px;
 }
 .grid {
   display: grid;
@@ -416,26 +428,26 @@ p { line-height: 1.6; margin: 0 0 12px; }
 .step h3,
 .step-card h3,
 .how-grid h3 {
-  font-size: clamp(17px, 1.3vw, 20px);
+  font-size: clamp(18px, 1.4vw, 22px);
   margin: 0;
   line-height: 1.3;
 }
 .step p,
 .step-card p {
-  font-size: clamp(15px, 1.1vw, 17px);
+  font-size: clamp(16px, 1.2vw, 18px);
   color: var(--muted);
   margin: 0;
   line-height: 1.55;
 }
 .service-card p {
   flex: 1;
-  font-size: clamp(15px, 1.1vw, 17px);
+  font-size: clamp(16px, 1.2vw, 18px);
 }
 .service-card h3 {
-  font-size: clamp(18px, 1.35vw, 22px);
+  font-size: clamp(19px, 1.45vw, 24px);
 }
 .card p {
-  font-size: clamp(15px, 1.05vw, 17px);
+  font-size: clamp(16px, 1.15vw, 18px);
 }
 .control-note {
   margin-top: 20px;
@@ -455,10 +467,10 @@ p { line-height: 1.6; margin: 0 0 12px; }
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 16px 14px;
+  padding: 20px 16px;
   text-align: center;
   font-weight: 600;
-  font-size: 15px;
+  font-size: clamp(15px, 1.15vw, 18px);
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .industry-tile:hover {
@@ -695,15 +707,21 @@ textarea::placeholder {
   .nav {
     position: absolute;
     right: 4vw;
-    top: 58px;
+    top: 100%;
+    margin-top: 8px;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 10px;
     box-shadow: var(--shadow);
-    padding: 8px;
+    padding: 12px;
     display: none;
     flex-direction: column;
-    min-width: min(280px, 88vw);
+    align-items: stretch;
+    justify-content: flex-start;
+    flex: initial;
+    gap: 12px;
+    min-width: min(300px, 88vw);
+    font-size: 17px;
     z-index: 60;
   }
   .nav.open { display: flex; }
@@ -711,11 +729,17 @@ textarea::placeholder {
     width: 100%;
     white-space: normal;
     text-align: center;
+    margin-left: 0;
   }
-  .nav-toggle { display: inline-block; color: var(--text); }
+  .nav-toggle { display: inline-block; color: var(--text); margin-left: auto; }
   .header-inner {
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-wrap: nowrap;
+    gap: 14px;
+    min-height: 96px;
+    position: relative;
+  }
+  .logo img {
+    height: clamp(72px, 15vw, 110px);
   }
 }
 @media (max-width: 900px) {
@@ -756,7 +780,16 @@ textarea::placeholder {
     text-align: center;
   }
   .profile-card p { max-width: none; }
-  .logo img { height: clamp(40px, 10vw, 60px); }
+  .header-inner {
+    min-height: 96px;
+    padding: 14px 0;
+  }
+  .logo img {
+    height: clamp(64px, 18vw, 92px);
+  }
+  .site-header .chip {
+    padding: 8px 10px;
+  }
   .cta-row {
     flex-direction: column;
     align-items: stretch;
@@ -765,7 +798,7 @@ textarea::placeholder {
     width: 100%;
   }
   .lang-switch {
-    order: 3;
+    order: 0;
   }
   .hero-benefits {
     line-height: 1.5;
@@ -773,7 +806,7 @@ textarea::placeholder {
 }
 @media (max-width: 390px) {
   .container {
-    width: min(1680px, 96vw);
+    width: min(1920px, 98vw);
   }
   h1 {
     font-size: clamp(24px, 7vw, 32px);
