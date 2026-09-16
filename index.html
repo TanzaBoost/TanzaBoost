@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css?v=3" />
   </head>
   <body>
     <header class="site-header">
@@ -26,11 +26,15 @@
         <div class="lang-switch">
           <button type="button" class="chip active" data-lang="en">
             <img src="assets/images/flag-en.svg" alt="" class="flag-icon" aria-hidden="true" />
-            <span>English</span>
+            <span>EN</span>
           </button>
-          <button type="button" class="chip" data-lang="sw">
-            <img src="assets/images/flag-tz.svg" alt="" class="flag-icon" aria-hidden="true" />
-            <span>Kiswahili</span>
+          <button type="button" class="chip" data-lang="de">
+            <img src="assets/images/flag-de.svg" alt="" class="flag-icon" aria-hidden="true" />
+            <span>DE</span>
+          </button>
+          <button type="button" class="chip" data-lang="es">
+            <img src="assets/images/flag-es.svg" alt="" class="flag-icon" aria-hidden="true" />
+            <span>ES</span>
           </button>
         </div>
         <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" data-nav-toggle data-i18n-aria="nav.toggle">☰</button>
@@ -123,28 +127,28 @@
         <div class="container">
           <h2 class="section-title" data-i18n="flow.title">From New Inquiry to Complete Job Information</h2>
           <p class="section-intro muted center" data-i18n="flow.intro">A practical example of how automation can support your daily work.</p>
-          <ol class="steps">
-            <li class="step">
+          <div class="steps">
+            <article class="step-card">
               <span class="step-num" aria-hidden="true">1</span>
               <h3 data-i18n="flow.s1.title">Customer Sends an Inquiry</h3>
               <p data-i18n="flow.s1.p">A request arrives through the website, email, or WhatsApp.</p>
-            </li>
-            <li class="step">
+            </article>
+            <article class="step-card">
               <span class="step-num" aria-hidden="true">2</span>
               <h3 data-i18n="flow.s2.title">The Assistant Responds Immediately</h3>
               <p data-i18n="flow.s2.p">The customer receives the correct questions or form.</p>
-            </li>
-            <li class="step">
+            </article>
+            <article class="step-card">
               <span class="step-num" aria-hidden="true">3</span>
               <h3 data-i18n="flow.s3.title">Information Is Organized</h3>
               <p data-i18n="flow.s3.p">Contact details, photos, location, requirements, and preferred times are collected.</p>
-            </li>
-            <li class="step">
+            </article>
+            <article class="step-card">
               <span class="step-num" aria-hidden="true">4</span>
               <h3 data-i18n="flow.s4.title">Your Team Receives a Complete Summary</h3>
               <p data-i18n="flow.s4.p">The responsible employee receives everything needed to continue the job.</p>
-            </li>
-          </ol>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -283,6 +287,6 @@
       </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js?v=3"></script>
   </body>
 </html>
