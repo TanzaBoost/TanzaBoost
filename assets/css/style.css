@@ -71,46 +71,78 @@ p { line-height: 1.6; margin: 0 0 12px; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(2, 6, 23, 0.7);
-  backdrop-filter: blur(8px);
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
 .header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 12px 0;
+  gap: 28px;
+  padding: 18px 0;
+  min-height: 108px;
 }
 .logo {
   font-weight: 800;
   font-size: 20px;
+  flex-shrink: 0;
 }
 .logo span { color: var(--brand); }
 .logo img {
-  height: clamp(52px, 7vw, 88px);
+  height: clamp(78px, 9.5vw, 128px);
   width: auto;
   display: block;
 }
 .nav {
   display: flex;
-  gap: 16px;
+  flex: 1;
+  gap: clamp(18px, 2vw, 36px);
   align-items: center;
+  justify-content: center;
+  font-size: clamp(16px, 1.2vw, 19px);
+  font-weight: 600;
 }
 .nav a {
   color: var(--text);
+  white-space: nowrap;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 .nav a:hover {
   color: var(--brand);
   transform: translateY(-2px);
 }
-.nav a[aria-current="page"] { color: var(--brand); font-weight: 600; }
+.nav a[aria-current="page"] { color: var(--brand); font-weight: 700; }
+.nav a.btn {
+  font-size: clamp(15px, 1.1vw, 17px);
+  padding: 12px 20px;
+  margin-left: 8px;
+}
 .nav-toggle {
   display: none;
-  font-size: 22px;
+  font-size: 28px;
   background: transparent;
   border: 0;
   cursor: pointer;
+  color: var(--text);
+  padding: 8px;
+  line-height: 1;
+}
+.lang-switch {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 0;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+}
+.site-header .lang-switch { margin-bottom: 0; }
+.site-header .chip {
+  padding: 10px 14px;
+  font-size: 15px;
+}
+.site-header .chip span { font-size: 15px; }
+.site-header .chip .flag-icon {
+  width: 22px;
+  height: 15px;
 }
 
 /* ============ Buttons ============ */
@@ -262,13 +294,10 @@ p { line-height: 1.6; margin: 0 0 12px; }
 }
 .lang-switch {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   margin-bottom: 16px;
   flex-wrap: wrap;
 }
-.site-header .lang-switch { margin-bottom: 0; }
-.site-header .chip { padding: 6px 10px; }
-.site-header .chip span { font-size: 13px; }
 
 /* ============ Sections ============ */
 .section { padding: 48px 0; }
