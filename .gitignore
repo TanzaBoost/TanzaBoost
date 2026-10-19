@@ -19,3 +19,8 @@ npm-debug.log*
 *.tmp
 *.temp
 
+# Local tooling and notes
+.wrangler/
+node_modules/
+MAIL.txt
+
